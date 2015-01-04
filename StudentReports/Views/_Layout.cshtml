@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@ViewBag.Title</title>
+    
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:darkslategray;">
+        <div class="container">
+            <h1 style="color:azure;">Student Marks Reports of XYZ School</h1>
+            <div class="pull-right" style="color: white;">
+                @if (Model.Username != "" && Model.Username != null)
+                {
+                    <span>Hi @Model.Username!</span>
+                    <a href="/auth/logout" style="color: papayawhip;">Logout</a>
+                }
+                else
+                {
+                    <a href="/login" style="color: papayawhip;">Login</a>
+                }
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container" style="margin-top:100px;">
+            @RenderBody()
+        </div>
+    </section>
+    <script src="~/Scripts/jquery-1.9.0.min.js"></script>
+    
+    @Html.RenderJsBundle("~/App/app.js.bundle", ServiceStack.Html.BundleOptions.MinifiedAndCombined)
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

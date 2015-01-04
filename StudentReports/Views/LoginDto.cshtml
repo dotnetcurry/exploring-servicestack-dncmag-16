@@ -1,0 +1,43 @@
+﻿@using StudentReports.DTOs
+@inherits ViewPage<LoginDto>
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="row">
+    <div class="panel panel-default col-md-9">
+        <form id="loginForm" action="/auth/credentials?format=json" method="post">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Username: </td>
+                        <td> <input type="text" name="userName" /> </td>
+                    </tr>
+                    <tr>
+                        <td>Password: </td>
+                        <td> <input type="password" name="password" /> </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Login" />
+                        </td>
+                        <td>
+                            <input type="reset" value="Reset" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <div class="col-md-3">
+        <a href="auth/twitter" class="btn btn-info">Login using Twitter</a>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/App/loginPage.js"></script>
+    <script>
+        $(activateLoginPage);
+    </script>
+}

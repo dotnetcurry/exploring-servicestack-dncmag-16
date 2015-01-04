@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title> 
+</head>
+<body>
+
+    <script src="Scripts/jquery-1.9.0.js"></script>
+    <script>
+        $(function () {
+            $.get("/students/1?format=json").then(function (result) {
+                console.log(result);
+            }, function (error) {
+                console.log("error: ");
+                console.log(error);
+            });
+
+            $.post("/marks?format=json", { studentId: 4, maxMarks: 100, marksAwarded: 70, subject: "Mathematics" })
+                .then(function (result) {
+                    console.log(result);
+                    $.get("/marks/"+result.studentId+"?format=json")
+                        .then(function (result2) {
+                            console.log(result2);
+                        });
+                });
+
+            $.get("/marks/2?format=json")
+                .then(function (result) {
+                    var marks = result.marks[1];
+                    marks.marksAwarded=100,
+                    marks.subject = "Science"
+                    $.ajax({
+                        url: "/marks/2?format=json",
+                        data: marks,
+                        type:"PUT"
+                    }).then(function (putResponse) {
+                        console.log(putResponse);
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
